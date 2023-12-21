@@ -14,6 +14,7 @@ from utils import randcell2
 CELL_TYPES = ['🟩', '🌲 ', '🌊 ', '🏥 ', '🏪 ', '🔥 ']
 
 TREE_BONUS = 100
+TREE_PENALTY = 50
 UPGRADE_COST = 300 # TODO: 5000
 LIFE_COST = 500 # TODO: 10000
 
@@ -92,12 +93,13 @@ class Map:
         if self.cells[cx][cy] == 1:
             self.cells[cx][cy] = 5
 
-    def update_fires(self):
+    def update_fires(self, helico):
         for ri in range(self.h):
             for ci in range(self.w):
                 cell = self.cells[ri][ci]
                 if cell == 5:
                     self.cells[ri][ci] = 0
+                    helico.score -= TREE_PENALTY
         for i in range(7):
             self.generate_fire()
 

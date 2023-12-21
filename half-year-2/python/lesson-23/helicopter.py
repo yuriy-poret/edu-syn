@@ -3,6 +3,7 @@ import os
 
 
 class Helicopter:
+
     def __init__(self, w, h):
         rc = randcell(w, h)
         rx, ry = rc[0], rc[1]
